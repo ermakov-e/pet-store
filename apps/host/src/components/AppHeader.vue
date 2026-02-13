@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router'
+import { RouterLink } from "vue-router";
 </script>
 
 <template>
@@ -9,14 +9,14 @@ import { RouterLink } from 'vue-router'
         <span class="logo-icon">🏪</span>
         <span class="logo-text">Внутренний магазин</span>
       </RouterLink>
-      
+
       <nav class="header-nav">
         <RouterLink to="/catalog">Каталог</RouterLink>
         <RouterLink to="/cart">Корзина</RouterLink>
         <RouterLink to="/profile">Профиль</RouterLink>
         <RouterLink to="/orders">Заказы</RouterLink>
       </nav>
-      
+
       <div class="header-user">
         <span class="user-avatar">👤</span>
         <span class="user-name">Иван Иванов</span>

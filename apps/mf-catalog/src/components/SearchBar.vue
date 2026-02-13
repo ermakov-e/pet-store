@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from "vue";
 
 const emit = defineEmits<{
-  search: [query: string]
-}>()
+  search: [query: string];
+}>();
 
-const searchQuery = ref('')
+const searchQuery = ref("");
 
 function handleSearch() {
-  emit('search', searchQuery.value)
+  emit("search", searchQuery.value);
 }
 
 function handleClear() {
-  searchQuery.value = ''
-  emit('search', '')
+  searchQuery.value = "";
+  emit("search", "");
 }
 </script>
 
@@ -21,18 +21,14 @@ function handleClear() {
   <div class="search-bar">
     <div class="search-input-wrapper">
       <span class="search-icon">🔍</span>
-      <input 
+      <input
         v-model="searchQuery"
         type="text"
         placeholder="Поиск товаров..."
         class="search-input"
         @input="handleSearch"
       />
-      <button 
-        v-if="searchQuery" 
-        class="clear-btn"
-        @click="handleClear"
-      >
+      <button v-if="searchQuery" class="clear-btn" @click="handleClear">
         ✕
       </button>
     </div>

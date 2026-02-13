@@ -48,3 +48,6 @@ coverage/
 # Micros
 apps/host/dist/
 apps/mf-catalog/dist/
+
+# AI
+~

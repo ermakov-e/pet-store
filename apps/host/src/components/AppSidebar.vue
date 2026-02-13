@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router'
+import { RouterLink } from "vue-router";
 </script>
 
 <template>
@@ -9,29 +9,29 @@ import { RouterLink } from 'vue-router'
         <span class="nav-icon">🏠</span>
         <span>Главная</span>
       </RouterLink>
-      
+
       <RouterLink to="/catalog" class="nav-item">
         <span class="nav-icon">📦</span>
         <span>Каталог</span>
       </RouterLink>
-      
+
       <RouterLink to="/cart" class="nav-item">
         <span class="nav-icon">🛒</span>
         <span>Корзина</span>
       </RouterLink>
-      
+
       <RouterLink to="/orders" class="nav-item">
         <span class="nav-icon">📋</span>
         <span>Заказы</span>
       </RouterLink>
-      
+
       <RouterLink to="/profile" class="nav-item">
         <span class="nav-icon">👤</span>
         <span>Профиль</span>
       </RouterLink>
-      
+
       <div class="sidebar-divider"></div>
-      
+
       <RouterLink to="/admin" class="nav-item admin">
         <span class="nav-icon">⚙️</span>
         <span>Админ-панель</span>

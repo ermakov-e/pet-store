@@ -1,1 +1,30 @@
-// Декларации типов для удалённых модулей Module Federation\ndeclare module 'mfCatalog/CatalogApp' {\n  import type { Component } from 'vue'\n  const CatalogApp: Component\n  export default CatalogApp\n}\n\ndeclare module 'mfCatalog/ProductList' {\n  import type { Component } from 'vue'\n  const ProductList: Component\n  export default ProductList\n}\n\ndeclare module 'mfCatalog/ProductCard' {\n  import type { Component } from 'vue'\n  const ProductCard: Component\n  export default ProductCard\n}\n\ndeclare module 'mfCatalog/ProductFilter' {\n  import type { Component } from 'vue'\n  const ProductFilter: Component\n  export default ProductFilter\n}\n\ndeclare module 'mfCatalog/SearchBar' {\n  import type { Component } from 'vue'\n  const SearchBar: Component\n  export default SearchBar\n}\n
+// Декларации типов для удалённых модулей Module Federation
+declare module "mfCatalog/CatalogApp" {
+  import type { Component } from "vue";
+  const CatalogApp: Component;
+  export default CatalogApp;
+}
+
+declare module "mfCatalog/ProductList" {
+  import type { Component } from "vue";
+  const ProductList: Component;
+  export default ProductList;
+}
+
+declare module "mfCatalog/ProductCard" {
+  import type { Component } from "vue";
+  const ProductCard: Component;
+  export default ProductCard;
+}
+
+declare module "mfCatalog/ProductFilter" {
+  import type { Component } from "vue";
+  const ProductFilter: Component;
+  export default ProductFilter;
+}
+
+declare module "mfCatalog/SearchBar" {
+  import type { Component } from "vue";
+  const SearchBar: Component;
+  export default SearchBar;
+}

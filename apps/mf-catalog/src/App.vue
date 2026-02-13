@@ -1,62 +1,63 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
-import SearchBar from './components/SearchBar.vue'
-import ProductFilter from './components/ProductFilter.vue'
-import ProductList from './components/ProductList.vue'
-import { useCatalogStore } from './stores/catalogStore'
-import type { Product } from './types'
+import { ref, computed, onMounted } from "vue";
+import SearchBar from "./components/SearchBar.vue";
+import ProductFilter from "./components/ProductFilter.vue";
+import ProductList from "./components/ProductList.vue";
+import { useCatalogStore } from "./stores/catalogStore";
+import type { Product } from "./types";
 
-const catalogStore = useCatalogStore()
+const catalogStore = useCatalogStore();
 
-const searchQuery = ref('')
-const selectedCategory = ref<string | null>(null)
-const priceRange = ref<[number, number]>([0, 100000])
+const searchQuery = ref("");
+const selectedCategory = ref<string | null>(null);
+const priceRange = ref<[number, number]>([0, 100000]);
 
 const categories = [
-  { id: 'electronics', name: 'Электроника' },
-  { id: 'office', name: 'Канцтовары' },
-  { id: 'furniture', name: 'Мебель' },
-  { id: 'accessories', name: 'Аксессуары' },
-  { id: 'software', name: 'Программное обеспечение' },
-]
+  { id: "electronics", name: "Электроника" },
+  { id: "office", name: "Канцтовары" },
+  { id: "furniture", name: "Мебель" },
+  { id: "accessories", name: "Аксессуары" },
+  { id: "software", name: "Программное обеспечение" },
+];
 
 const filteredProducts = computed(() => {
-  let products = catalogStore.products
-  
+  let products = catalogStore.products;
+
   if (searchQuery.value) {
-    const query = searchQuery.value.toLowerCase()
-    products = products.filter(p => 
-      p.name.toLowerCase().includes(query) ||
-      p.description.toLowerCase().includes(query)
-    )
+    const query = searchQuery.value.toLowerCase();
+    products = products.filter(
+      (p) =>
+        p.name.toLowerCase().includes(query) ||
+        p.description.toLowerCase().includes(query),
+    );
   }
-  
+
   if (selectedCategory.value) {
-    products = products.filter(p => p.category === selectedCategory.value)
+    products = products.filter((p) => p.category === selectedCategory.value);
   }
-  
-  products = products.filter(p => 
-    p.price >= priceRange.value[0] && p.price <= priceRange.value[1]
-  )
-  
-  return products
-})
+
+  products = products.filter(
+    (p) => p.price >= priceRange.value[0] && p.price <= priceRange.value[1],
+  );
+
+  return products;
+});
 
 function handleSearch(query: string) {
-  searchQuery.value = query
+  searchQuery.value = query;
 }
 
 function handleCategoryChange(categoryId: string | null) {
-  selectedCategory.value = categoryId
+  selectedCategory.value = categoryId;
 }
 
 function handlePriceChange(range: [number, number]) {
-  priceRange.value = range
+  priceRange.value = range;
 }
 
 onMounted(() => {
-  catalogStore.fetchProducts()
-})
+  catalogStore.fetchProducts();
+});
 </script>
 
 <template>
@@ -65,14 +66,14 @@ onMounted(() => {
       <h1>Каталог товаров</h1>
       <p class="subtitle">Внутренний магазин компании</p>
     </div>
-    
+
     <div class="catalog-controls">
       <SearchBar @search="handleSearch" />
     </div>
-    
+
     <div class="catalog-content">
       <aside class="catalog-sidebar">
-        <ProductFilter 
+        <ProductFilter
           :categories="categories"
           :selected-category="selectedCategory"
           :price-range="priceRange"
@@ -80,14 +81,14 @@ onMounted(() => {
           @price-change="handlePriceChange"
         />
       </aside>
-      
+
       <main class="catalog-main">
         <div class="products-header">
           <span class="products-count">
             Найдено товаров: {{ filteredProducts.length }}
           </span>
         </div>
-        
+
         <ProductList :products="filteredProducts" />
       </main>
     </div>
@@ -154,7 +155,7 @@ onMounted(() => {
   .catalog-content {
     grid-template-columns: 1fr;
   }
-  
+
   .catalog-sidebar {
     position: static;
   }

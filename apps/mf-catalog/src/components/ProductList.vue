@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import { useCatalogStore } from '../stores/catalogStore'
-import ProductCard from './ProductCard.vue'
-import type { Product } from '../types'
+import { useCatalogStore } from "../stores/catalogStore";
+import ProductCard from "./ProductCard.vue";
+import type { Product } from "../types";
 
 const props = defineProps<{
-  products: Product[]
-}>()
+  products: Product[];
+}>();
 
-const catalogStore = useCatalogStore()
+const catalogStore = useCatalogStore();
 
 function handleAddToCart(product: Product) {
   // Здесь будет интеграция с корзиной через EventBus или Shared Store
-  console.log('Добавлено в корзину:', product.name)
-  alert(`Товар "${product.name}" добавлен в корзину!`)
+  console.log("Добавлено в корзину:", product.name);
+  alert(`Товар "${product.name}" добавлен в корзину!`);
 }
 </script>
 
@@ -22,16 +22,16 @@ function handleAddToCart(product: Product) {
       <div class="loading-spinner"></div>
       <p>Загрузка товаров...</p>
     </div>
-    
+
     <div v-else-if="catalogStore.error" class="error">
       <p>{{ catalogStore.error }}</p>
       <button @click="catalogStore.fetchProducts()">Повторить</button>
     </div>
-    
+
     <div v-else-if="products.length === 0" class="empty">
       <p>Товары не найдены</p>
     </div>
-    
+
     <div v-else class="products-grid">
       <ProductCard
         v-for="product in products"

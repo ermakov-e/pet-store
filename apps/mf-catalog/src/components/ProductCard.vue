@@ -1,24 +1,24 @@
 <script setup lang="ts">
-import type { Product } from '../types'
+import type { Product } from "../types";
 
 const props = defineProps<{
-  product: Product
-}>()
+  product: Product;
+}>();
 
 const emit = defineEmits<{
-  addToCart: [product: Product]
-}>()
+  addToCart: [product: Product];
+}>();
 
 function formatPrice(price: number): string {
-  return new Intl.NumberFormat('ru-RU', {
-    style: 'currency',
-    currency: 'RUB',
-    minimumFractionDigits: 0
-  }).format(price)
+  return new Intl.NumberFormat("ru-RU", {
+    style: "currency",
+    currency: "RUB",
+    minimumFractionDigits: 0,
+  }).format(price);
 }
 
 function handleAddToCart() {
-  emit('addToCart', props.product)
+  emit("addToCart", props.product);
 }
 </script>
 
@@ -26,17 +26,19 @@ function handleAddToCart() {
   <div class="product-card" :class="{ 'out-of-stock': !product.inStock }">
     <div class="product-image">
       <img :src="product.image" :alt="product.name" />
-      <span v-if="!product.inStock" class="out-of-stock-badge">Нет в наличии</span>
+      <span v-if="!product.inStock" class="out-of-stock-badge"
+        >Нет в наличии</span
+      >
     </div>
-    
+
     <div class="product-info">
       <span class="product-category">{{ product.category }}</span>
       <h3 class="product-name">{{ product.name }}</h3>
       <p class="product-description">{{ product.description }}</p>
-      
+
       <div class="product-footer">
         <span class="product-price">{{ formatPrice(product.price) }}</span>
-        <button 
+        <button
           class="add-to-cart-btn"
           :disabled="!product.inStock"
           @click="handleAddToCart"

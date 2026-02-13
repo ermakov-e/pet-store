@@ -1,33 +1,36 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
-import type { Category } from '../types'
+import { ref, watch } from "vue";
+import type { Category } from "../types";
 
 const props = defineProps<{
-  categories: Category[]
-  selectedCategory: string | null
-  priceRange: [number, number]
-}>()
+  categories: Category[];
+  selectedCategory: string | null;
+  priceRange: [number, number];
+}>();
 
 const emit = defineEmits<{
-  categoryChange: [categoryId: string | null]
-  priceChange: [range: [number, number]]
-}>()
+  categoryChange: [categoryId: string | null];
+  priceChange: [range: [number, number]];
+}>();
 
-const localPriceMin = ref(props.priceRange[0])
-const localPriceMax = ref(props.priceRange[1])
+const localPriceMin = ref(props.priceRange[0]);
+const localPriceMax = ref(props.priceRange[1]);
 
 function handleCategoryClick(categoryId: string | null) {
-  emit('categoryChange', categoryId)
+  emit("categoryChange", categoryId);
 }
 
 function handlePriceApply() {
-  emit('priceChange', [localPriceMin.value, localPriceMax.value])
+  emit("priceChange", [localPriceMin.value, localPriceMax.value]);
 }
 
-watch(() => props.priceRange, (newRange) => {
-  localPriceMin.value = newRange[0]
-  localPriceMax.value = newRange[1]
-})
+watch(
+  () => props.priceRange,
+  (newRange) => {
+    localPriceMin.value = newRange[0];
+    localPriceMax.value = newRange[1];
+  },
+);
 </script>
 
 <template>
@@ -36,7 +39,7 @@ watch(() => props.priceRange, (newRange) => {
       <h3 class="filter-title">Категории</h3>
       <ul class="category-list">
         <li>
-          <button 
+          <button
             class="category-btn"
             :class="{ active: selectedCategory === null }"
             @click="handleCategoryClick(null)"
@@ -45,7 +48,7 @@ watch(() => props.priceRange, (newRange) => {
           </button>
         </li>
         <li v-for="category in categories" :key="category.id">
-          <button 
+          <button
             class="category-btn"
             :class="{ active: selectedCategory === category.id }"
             @click="handleCategoryClick(category.id)"
@@ -55,13 +58,13 @@ watch(() => props.priceRange, (newRange) => {
         </li>
       </ul>
     </div>
-    
+
     <div class="filter-section">
       <h3 class="filter-title">Цена</h3>
       <div class="price-inputs">
         <div class="price-input-group">
           <label>От</label>
-          <input 
+          <input
             v-model.number="localPriceMin"
             type="number"
             min="0"
@@ -70,7 +73,7 @@ watch(() => props.priceRange, (newRange) => {
         </div>
         <div class="price-input-group">
           <label>До</label>
-          <input 
+          <input
             v-model.number="localPriceMax"
             type="number"
             min="0"
@@ -78,9 +81,7 @@ watch(() => props.priceRange, (newRange) => {
           />
         </div>
       </div>
-      <button class="apply-btn" @click="handlePriceApply">
-        Применить
-      </button>
+      <button class="apply-btn" @click="handlePriceApply">Применить</button>
     </div>
   </div>
 </template>
