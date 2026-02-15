@@ -7,12 +7,15 @@
   "scripts": {
     "dev:host": "pnpm --filter @pet-store/host dev",
     "dev:catalog": "pnpm --filter @pet-store/mf-catalog dev",
+    "dev:cart": "pnpm --filter @pet-store/mf-cart dev",
     "dev:all": "pnpm -r --parallel -r dev",
     "build": "pnpm -r build",
     "build:host": "pnpm --filter @pet-store/host build",
     "build:catalog": "pnpm --filter @pet-store/mf-catalog build",
+    "build:cart": "pnpm --filter @pet-store/mf-cart build",
     "preview": "pnpm --filter @pet-store/host preview",
     "preview:catalog": "pnpm --filter @pet-store/mf-catalog preview",
+    "preview:cart": "pnpm --filter @pet-store/mf-cart preview",
     "preview:all": "pnpm -r --parallel preview",
     "lint": "eslint . --ext .ts,.tsx,.vue",
     "typecheck": "pnpm -r typecheck"

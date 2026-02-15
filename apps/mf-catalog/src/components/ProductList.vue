@@ -9,10 +9,38 @@ const props = defineProps<{
 
 const catalogStore = useCatalogStore();
 
+interface CartItem {
+  productId: string;
+  name: string;
+  price: number;
+  quantity: number;
+  image?: string;
+}
+
 function handleAddToCart(product: Product) {
-  // Здесь будет интеграция с корзиной через EventBus или Shared Store
-  console.log("Добавлено в корзину:", product.name);
-  alert(`Товар "${product.name}" добавлен в корзину!`);
+  // Читаем текущую корзину из localStorage
+  const cartData = localStorage.getItem("cart-items");
+  const cartItems: CartItem[] = cartData ? JSON.parse(cartData) : [];
+  
+  // Проверяем, есть ли товар уже в корзине
+  const existingItem = cartItems.find(item => item.productId === product.id);
+  
+  if (existingItem) {
+    // Увеличиваем количество
+    existingItem.quantity += 1;
+  } else {
+    // Добавляем новый товар
+    cartItems.push({
+      productId: product.id,
+      name: product.name,
+      price: product.price,
+      quantity: 1,
+      image: product.image,
+    });
+  }
+  
+  // Сохраняем в localStorage
+  localStorage.setItem("cart-items", JSON.stringify(cartItems));
 }
 </script>
 

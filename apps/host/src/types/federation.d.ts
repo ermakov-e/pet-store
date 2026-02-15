@@ -28,3 +28,10 @@ declare module "mfCatalog/SearchBar" {
   const SearchBar: Component;
   export default SearchBar;
 }
+
+// mfCart - Vue-компонент-обёртка для React-приложения
+declare module "mfCart/CartApp" {
+  import type { Component } from "vue";
+  const CartApp: Component;
+  export default CartApp;
+}

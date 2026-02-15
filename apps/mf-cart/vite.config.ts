@@ -1,23 +1,23 @@
 import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue";
 import react from "@vitejs/plugin-react";
+import vue from "@vitejs/plugin-vue";
 import federation from "@originjs/vite-plugin-federation";
 import { resolve } from "path";
 
 export default defineConfig({
   plugins: [
-    vue(),
     react(),
+    vue(),
     federation({
-      name: "host",
+      name: "mfCart",
       filename: "remoteEntry.js",
 
-      remotes: {
-        mfCatalog: "http://localhost:4173/assets/remoteEntry.js",
-        mfCart: "http://localhost:4174/assets/remoteEntry.js",
+      exposes: {
+        // Vue-компонент-обёртка для интеграции с Vue-хостом
+        "./CartApp": "./src/CartApp.vue",
       },
 
-      shared: ["vue", "vue-router", "pinia", "react", "react-dom"],
+      shared: ["react", "react-dom", "vue", "zustand"],
     }),
   ],
 
@@ -26,12 +26,12 @@ export default defineConfig({
   },
 
   preview: {
-    port: 4170,
+    port: 4174,
     strictPort: true,
   },
 
   server: {
-    port: 4170,
+    port: 4174,
     strictPort: true,
     headers: {
       "Access-Control-Allow-Origin": "*",

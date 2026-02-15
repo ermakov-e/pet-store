@@ -12,10 +12,6 @@ export default defineConfig({
       // Экспортируемые модули
       exposes: {
         "./CatalogApp": "./src/App.vue",
-        "./ProductList": "./src/components/ProductList.vue",
-        "./ProductCard": "./src/components/ProductCard.vue",
-        "./ProductFilter": "./src/components/ProductFilter.vue",
-        "./SearchBar": "./src/components/SearchBar.vue",
       },
 
       // Общие зависимости

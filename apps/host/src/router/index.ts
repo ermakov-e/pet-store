@@ -39,6 +39,18 @@ const routes: RouteRecordRaw[] = [
     },
   },
   {
+    path: "/cart",
+    name: "cart",
+    component: () => import("mfCart/CartApp"),
+    props: {
+      remote: "mfCart",
+      module: "./CartApp",
+    },
+    meta: {
+      title: "Корзина",
+    },
+  },
+  {
     path: "/:pathMatch(.*)*",
     name: "not-found",
     component: () => import("../components/NotFound.vue"),
